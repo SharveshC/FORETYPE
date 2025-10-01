@@ -155,7 +155,7 @@ Selecting a suggestion increases its frequency count.
 
 ## Contributors 
 
-Sarvesh
+Sharvesh
 Sachinkumar M
 Sharmin 
 Prawin
