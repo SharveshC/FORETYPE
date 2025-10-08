@@ -106,7 +106,7 @@ def main():
             system.add_word(w)
 
     print("Autocomplete system ready.")
-    print("Type something and press Enter. Empty input exits.\n")
+    print("Type something and press Enter.\n")
 
     # CHANGE: Use a try...finally block. The code in the 'finally'
     # part is guaranteed to run when the 'try' block is exited,
