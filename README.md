@@ -159,35 +159,34 @@ Selecting a suggestion increases its frequency count.
   <tr>
     <td align="center">
       <a href="https://github.com/SharveshC">
-        <img src="https://avatars.githubusercontent.com/u/1?v=4" width="100;" style="border-radius:50%;" alt="SharveshC"/>
+        <img src="https://avatars.githubusercontent.com/u/188616730?v=4" width="100;" style="border-radius:50%;" alt="SharveshC"/>
         <br />
         <sub><b>SharveshC</b></sub>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/sAcKy-14">
-        <img src="https://avatars.githubusercontent.com/u/2?v=4" width="100;" style="border-radius:50% ;" alt="sAcKy-14"/>
+        <img src="https://avatars.githubusercontent.com/u/187089792?s=400&u=48a2d2db734941da7c5cf3e1867f32d40aea1b0d&v=4" width="100;" style="border-radius:50% ;" alt="sAcKy-14"/>
         <br />
         <sub><b>sAcKy-14</b></sub>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/ashtag3696">
-        <img src="https://avatars.githubusercontent.com/u/3?v=4" width="100;" style="border-radius:50% ;" alt="ashtag3696"/>
+        <img src="https://avatars.githubusercontent.com/u/186132627?v=4" width="100;" style="border-radius:50% ;" alt="ashtag3696"/>
         <br />
         <sub><b>ashtag3696</b></sub>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/Prawin443">
-        <img src="https://avatars.githubusercontent.com/u/4?v=4" width="100;" style="border-radius:50% ;" alt="Prawin443"/>
+        <img src="https://avatars.githubusercontent.com/u/197060598?v=4" width="100;" style="border-radius:50% ;" alt="Prawin443"/>
         <br />
         <sub><b>Prawin443</b></sub>
       </a>
     </td>
   </tr>
 </table>
-
 
 
 ---
