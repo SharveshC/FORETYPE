@@ -1,0 +1,20 @@
+==================================================
+--- ✈️ Post-Flight Final Report ---
+==================================================
+
+--- Checklist Summary ---
+Confirmed: 10 | Skipped: 2
+
+[OK] - PREFLIGHT - Cockpit Preparation
+[OK] - PREFLIGHT - Exterior Inspection
+[OK] - ENGINE START - Ignition and Start
+[OK] - TAXI - Brake and Steering Check
+[SKIPPED] - TAKEOFF - Flaps and Power Set
+[OK] - CLIMB - Autopilot Engage
+[OK] - CRUISE - Fuel and Systems Monitor
+[OK] - DESCENT - Pressurization Check
+[OK] - APPROACH - Landing Gear and Flaps
+[OK] - LANDING - Final Approach and Touchdown
+[OK] - GO AROUND - Aborted Landing Procedure
+[SKIPPED] - SHUTDOWN - Parking Brake and Avionics Off
+==================================================
