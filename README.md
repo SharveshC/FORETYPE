@@ -1,6 +1,6 @@
 # 🔤 FORETYPE
 
-**Multi-Domain Autocomplete System and Development Workspace**
+
 
 FORETYPE is an intelligent autocomplete system built with advanced data structures (Trie & Bloom Filter) combined with a structured multi-domain project workspace. It demonstrates efficient text prediction while serving as a practical development environment for various engineering projects.
 
