@@ -1,195 +1,394 @@
-# Encrypted Autocomplete Engine (DSA_PROJECT)
+# 🔤 FORETYPE
 
-**Case Study for Data Structures & Algorithms** — an encrypted-autocomplete / suggestion engine using **Trie**, **TST**, **BST**, and **SkipList** with demo UI and RSA-based storage.
 
----
 
-## Project Overview
-
-This project implements a learning-focused autocomplete / suggestion engine. Users type a prefix, and the system returns suggestions ordered by frequency (how often each word was selected).  
-
-It demonstrates:
-- Multiple data structures (Trie, Ternary Search Tree, Binary Search Tree, SkipList).  
-- Frequency-based ranking of suggestions.  
-- RSA-based encryption of stored words (illustrating storing ciphertext and decrypting only for display).  
-- A terminal-based interactive UI (using `curses`).  
-
-> ⚠️ Note: The encryption here is **for demonstration only**. Keys are generated locally and decrypted in the same process — this is not a production-ready searchable encryption system.
+FORETYPE is an intelligent autocomplete system built with advanced data structures (Trie & Bloom Filter) combined with a structured multi-domain project workspace. It demonstrates efficient text prediction while serving as a practical development environment for various engineering projects.
 
 ---
 
-## Why These Data Structures?
+## ✨ Features
 
-Autocomplete requires two essential operations:
+### Autocomplete Engine
+- **Trie-Based Prefix Search** – Fast O(m) lookup time where m is prefix length
+- **Bloom Filter Integration** – Probabilistic membership testing for memory efficiency
+- **Frequency Learning** – Adapts suggestions based on user input patterns
+- **Persistent Storage** – Saves learning data across sessions
+- **Interactive CLI** – Real-time word suggestions as you type
 
-1. **Prefix lookup** — find all words starting with a given prefix efficiently.  
-2. **Ranking by frequency** — show the most commonly selected suggestions first.  
-
-Chosen structures:
-- **Trie** → O(L) prefix traversal, natural for autocomplete.  
-- **Ternary Search Tree (TST)** → more space-efficient than Trie, still O(L).  
-- **Binary Search Tree (BST)** → simple, but prefix searches can degrade in unbalanced cases.  
-- **SkipList + Trie hybrid** → randomized structure with O(log n) operations, used to quickly fetch top-k suggestions.  
+### Development Workspace
+- **Multi-Domain Organization** – Separate modules for aviation, database, visualization, and automation
+- **Production-Ready Builds** – Organized FINAL/ directory for completed work
+- **Script Automation** – Reusable Python utilities and processing scripts
+- **Data Management** – Structured storage for datasets, logs, and exports
 
 ---
 
-## Repository Structure
-
+## 🏗 System Architecture
 ```
-DSA_PROJECT/
-├── BST.py                # BST + encryption + CLI UI
-├── TRIE.py               # Trie + encryption + UI
-├── TST.py                # Ternary Search Tree + encryption + UI
-├── triewithskiplist.py   # Trie + SkipList integration for ranking
-├── samp.py               # Simple Trie demo (no encryption) + UI
-└── README.md             # (this file)
+┌─────────────────────────────────────────┐
+│         User Input Interface            │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│      Autocomplete Engine Core           │
+│  ┌─────────┐  ┌──────────┐  ┌────────┐ │
+│  │  Trie   │  │  Bloom   │  │  Freq  │ │
+│  │ Storage │◄─┤  Filter  │◄─┤  Dict  │ │
+│  └─────────┘  └──────────┘  └────────┘ │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│    Persistent Data (word_freq.pkl)      │
+└─────────────────────────────────────────┘
 ```
 
 ---
 
-## Installation & Setup
+## 📦 Installation
 
-### Requirements
-- Python 3.8 or later  
-- Required libraries:
+### Prerequisites
+- Python 3.8 or higher
+- pip package manager
+- MySQL (optional, for database modules)
+
+### Setup Steps
+
+1. **Clone the repository**
 ```bash
-pip install pycryptodome
-pip install windows-curses   # only on Windows
+git clone https://github.com/yourusername/foretype.git
+cd foretype
 ```
 
-### Run Examples
-Run from a terminal (not an IDE console):
-
+2. **Create virtual environment** (recommended)
 ```bash
-python TRIE.py
-python TST.py
-python BST.py
-python triewithskiplist.py
-python samp.py   # simpler demo without encryption
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-**Controls:**
-- Type letters to build a prefix  
-- Press **Tab / Enter** → generate suggestions  
-- Use **Arrow Keys** to navigate, **Enter** to select  
-- Press **ESC** to exit  
+3. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
 
-Selecting a suggestion increases its frequency count.
+If `requirements.txt` doesn't exist, install manually:
+```bash
+pip install pybloom-live
+```
 
----
-
-## High-Level Design
-
-### Encryption Flow
-- RSA keypair generated at runtime (`RSA.generate(2048)`)  
-- Words are encrypted using the public key before insertion  
-- Stored ciphertext is decrypted with the private key before display  
-- Mimics client/server searchable-encryption (but runs locally)  
-
-### Autocomplete Flow
-1. **Insert / Build** → Insert word into chosen structure with encrypted storage + frequency counter  
-2. **Prefix Traversal** → Traverse nodes matching user’s typed prefix  
-3. **Candidate Collection** → DFS / traversal gathers possible completions  
-4. **Ranking** → Use `heapq` or SkipList to return top-k results by frequency  
-5. **Decryption & Display** → Ciphertext suggestions decrypted and shown in UI  
+4. **Verify installation**
+```bash
+python autocomplete.py
+```
 
 ---
 
-## Modules & Key Functions
+## 🚀 Usage
 
-### TRIE.py
-- `TrieNode`, `Trie` (insert, search, autocomplete)  
-- `autocomplete_encrypted(prefix, k)`  
-- UI: `inputStr`, `menu_select`, `client_decrypt_suggestions`
+### Running the Autocomplete System
 
-### TST.py
-- `TSTNode`, `TernarySearchTree`  
-- `EncryptedTST` wrapper  
-- Similar autocomplete flow adapted for TST  
+**Interactive Mode:**
+```bash
+python autocomplete.py
+```
 
-### BST.py
-- `BSTNode`, `EncryptedBST`  
-- Stores encrypted words lexicographically  
-- Autocomplete by scanning subtree prefixes  
+Type any prefix and press Enter to see suggestions. Type `exit` to quit.
 
-### triewithskiplist.py
-- `SkipListNode`, `SkipList` (probabilistic O(log n) structure)  
-- Trie integrated with SkipList for frequency-based ranking  
+**Example Session:**
+```
+Enter prefix (or 'exit' to quit): hel
+Suggestions: ['hello', 'help', 'helmet', 'helvetica']
 
----
+Enter prefix (or 'exit' to quit): prog
+Suggestions: ['program', 'programming', 'progress', 'programmer']
+```
 
-## Complexity Summary
+### Using Project Scripts
 
-| Operation             | Trie / TST      | BST (balanced)    | SkipList ranking   |
-|-----------------------|-----------------|------------------|-------------------|
-| Insert / Search word  | O(L)            | O(log n)         | O(log n)          |
-| Prefix traversal      | O(L)            | O(log n + range) | —                 |
-| Gather completions    | O(M)            | O(M)             | O(k + log n)      |
-| Ranking (top-k)       | O(M log k)      | O(M log k)       | O(k + log n)      |
+**Run Python utilities:**
+```bash
+python FINAL/scripts/your_script.py
+```
 
-- L = prefix length  
-- n = number of words  
-- M = number of matched completions  
-- k = number of top results requested  
+**Apply database schema:**
+```bash
+mysql -u root -p your_database < FINAL/mydb/schema.sql
+```
 
----
-
-## Limitations
-
-- RSA demo is **not secure** in production (keys generated and stored locally).  
-- BST is unbalanced → worst case O(n).  
-- No persistent storage — data resets on each run.  
-- UI is terminal-based (`curses`) and may not work inside some IDEs.  
+**Generate visualizations:**
+```bash
+python FINAL/scripts/generate_plots.py
+# Output saved to FINAL/plots/
+```
 
 ---
 
-## Future Improvements
-
-- Add unit tests with `pytest`  
-- Use AVL / Red-Black tree instead of plain BST  
-- Implement compressed trie (radix tree) for space efficiency  
-- Persist vocabulary and frequency counts  
-- Swap curses UI for a web-based or GUI interface  
-
----
-
-## 💫 Contributors
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/SharveshC">
-        <img src="https://avatars.githubusercontent.com/u/188616730?v=4" width="100;" style="border-radius:50%;" alt="SharveshC"/>
-        <br />
-        <sub><b>SharveshC</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/sAcKy-14">
-        <img src="https://avatars.githubusercontent.com/u/187089792?s=400&u=48a2d2db734941da7c5cf3e1867f32d40aea1b0d&v=4" width="100;" style="border-radius:50% ;" alt="sAcKy-14"/>
-        <br />
-        <sub><b>sAcKy-14</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/ashtag3696">
-        <img src="https://avatars.githubusercontent.com/u/186132627?v=4" width="100;" style="border-radius:50% ;" alt="ashtag3696"/>
-        <br />
-        <sub><b>ashtag3696</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/Prawin443">
-        <img src="https://avatars.githubusercontent.com/u/197060598?v=4" width="100;" style="border-radius:50% ;" alt="Prawin443"/>
-        <br />
-        <sub><b>Prawin443</b></sub>
-      </a>
-    </td>
-  </tr>
-</table>
-
+## 📁 Project Structure
+```
+FORETYPE/
+│
+├── autocomplete.py          # Main autocomplete engine
+├── word_freq.pkl            # Persistent frequency data (auto-generated)
+├── requirements.txt         # Python dependencies
+├── README.md               # This file
+├── LICENSE                 # MIT License
+│
+├── FINAL/                  # Production-ready outputs
+│   ├── avi/               # Aviation system modules
+│   │   ├── flight_data.csv
+│   │   ├── analysis_report.pdf
+│   │   └── route_optimizer.py
+│   │
+│   ├── mydb/              # Database resources
+│   │   ├── schema.sql
+│   │   ├── seed_data.sql
+│   │   └── backups/
+│   │
+│   ├── plots/             # Generated visualizations
+│   │   ├── frequency_chart.png
+│   │   ├── usage_trends.pdf
+│   │   └── performance_metrics.svg
+│   │
+│   ├── scripts/           # Automation utilities
+│   │   ├── data_processor.py
+│   │   ├── batch_convert.py
+│   │   └── report_generator.py
+│   │
+│   └── others/            # Documentation & logs
+│       ├── docs/
+│       ├── logs/
+│       └── archive/
+│
+└── Typr/                  # Typing automation module
+    ├── typr_main.py
+    ├── config.json
+    └── README.md
+```
 
 ---
 
+## 🧠 Autocomplete System Details
+
+### Core Components
+
+#### 1. **Trie Data Structure**
+- Stores words in a tree structure for efficient prefix matching
+- Each node represents a character
+- Leaf nodes mark complete words
+- Time Complexity: O(m) for search, where m = prefix length
+
+#### 2. **Bloom Filter**
+- Probabilistic data structure for membership testing
+- Reduces memory footprint by ~90% compared to hash sets
+- Zero false negatives, configurable false positive rate
+- Ideal for pre-filtering before expensive Trie operations
+
+#### 3. **Frequency Dictionary**
+- Tracks how often each word is used
+- Influences suggestion ranking
+- Persists to disk using pickle
+- Auto-updates based on user selections
+
+### Algorithm Flow
+```python
+1. User inputs prefix "pro"
+2. Bloom filter checks if any words start with "pro" (fast)
+3. If positive, Trie performs prefix search
+4. Results ranked by frequency from dictionary
+5. Top N suggestions returned to user
+6. User selection updates frequency data
+7. Changes persisted to word_freq.pkl
+```
+
+### Performance Characteristics
+
+| Operation | Time Complexity | Space Complexity |
+|-----------|----------------|------------------|
+| Insert | O(m) | O(alphabet_size × m) |
+| Search | O(m) | O(1) |
+| Prefix Match | O(p + n) | O(n) |
+| Bloom Check | O(k) | O(m) bits |
+
+*where m = word length, p = prefix length, n = matches, k = hash functions*
+
 ---
 
+## 📊 Data Domains
+
+### Aviation Module (`FINAL/avi/`)
+- Flight routing optimization
+- Aircraft performance analysis
+- Airport traffic data processing
+- Safety incident reports
+
+### Database Module (`FINAL/mydb/`)
+- SQL schema definitions
+- Seed data generators
+- Migration scripts
+- Backup automation
+
+### Visualization Module (`FINAL/plots/`)
+- Statistical charts
+- Usage trends
+- Performance metrics
+- Custom reporting graphics
+
+### Scripts Module (`FINAL/scripts/`)
+- Batch processing utilities
+- Data transformation pipelines
+- Automated reporting
+- Format converters
+
+---
+
+## ⚙️ Configuration
+
+### Autocomplete Settings
+
+Edit these parameters in `autocomplete.py`:
+```python
+# Bloom Filter Configuration
+BLOOM_CAPACITY = 100000        # Expected number of words
+BLOOM_ERROR_RATE = 0.001       # False positive probability
+
+# Suggestion Limits
+MAX_SUGGESTIONS = 10           # Number of suggestions to return
+MIN_FREQUENCY = 1              # Minimum frequency threshold
+
+# Persistence
+FREQ_FILE = 'word_freq.pkl'   # Frequency data storage
+AUTO_SAVE = True               # Save after each update
+```
+
+### Database Configuration
+
+Create `config.py` for database connections:
+```python
+DB_CONFIG = {
+    'host': 'localhost',
+    'user': 'your_username',
+    'password': 'your_password',
+    'database': 'foretype_db'
+}
+```
+
+---
+
+## 🛠 Development
+
+### Adding New Words to Dictionary
+```python
+from autocomplete import AutocompleteSystem
+
+ac = AutocompleteSystem()
+ac.add_word('newword')
+ac.save_frequencies()  # Persist changes
+```
+
+### Extending Functionality
+
+**Custom ranking algorithm:**
+```python
+def custom_rank(suggestions, frequencies):
+    # Your ranking logic here
+    return sorted(suggestions, key=lambda w: your_metric(w))
+```
+
+**Adding domain-specific dictionaries:**
+```python
+# Load medical terms
+ac.load_dictionary('medical_terms.txt')
+
+# Load programming keywords
+ac.load_dictionary('programming_lang.txt')
+```
+
+---
+
+## 🧪 Testing
+
+Run unit tests:
+```bash
+python -m pytest tests/
+```
+
+Performance benchmark:
+```bash
+python benchmark.py --iterations 10000
+```
+
+---
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**Issue:** `ImportError: No module named 'pybloom_live'`
+```bash
+pip install pybloom-live
+```
+
+**Issue:** `FileNotFoundError: word_freq.pkl`
+- File auto-generates on first run
+- Check write permissions in directory
+
+**Issue:** Slow suggestions on large datasets
+- Increase Bloom filter capacity
+- Reduce MAX_SUGGESTIONS parameter
+- Implement caching layer
+
+---
+
+## 🚧 Roadmap
+
+- [ ] Convert modules into microservices architecture
+- [ ] Add REST API endpoints for autocomplete
+- [ ] Implement ML-based context-aware suggestions
+- [ ] Docker containerization for easy deployment
+- [ ] Comprehensive unit test coverage (target: 90%+)
+- [ ] CI/CD pipeline with GitHub Actions
+- [ ] Web interface using React/Vue
+- [ ] Multi-language support
+- [ ] Cloud deployment guides (AWS, GCP, Azure)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Coding Standards
+- Follow PEP 8 style guide
+- Add docstrings to all functions
+- Include unit tests for new features
+- Update README with new functionality
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+### MIT License Summary
+- ✅ Commercial use
+- ✅ Modification
+- ✅ Distribution
+- ✅ Private use
+- ⚠️ Liability and warranty not provided
+
+---
+
+## 🙏 Acknowledgments
+
+- Trie data structure implementation inspired by classic CS algorithms
+- Bloom filter implementation using `pybloom-live` library
+- Project structure follows best practices from Python Packaging Guide
+
+---
