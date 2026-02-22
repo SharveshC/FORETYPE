@@ -79,57 +79,94 @@ FORETYPE is a **production-ready intelligent autocomplete system** featuring mul
 ### Prerequisites
 - Python 3.8 or higher
 - pip package manager
-- MySQL (optional, for database modules)
+- Modern web browser (for Streamlit interface)
 
-### Setup Steps
+### Quick Start
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/foretype.git
-cd foretype
+git clone https://github.com/SharveshC/FORETYPE.git
+cd FORETYPE
 ```
 
 2. **Create virtual environment** (recommended)
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
 ```
 
 3. **Install dependencies**
 ```bash
-pip install -r requirements.txt
+pip install streamlit plotly pandas pybloom-live pycryptodome windows-curses
 ```
 
-If `requirements.txt` doesn't exist, install manually:
+4. **Initialize the massive dictionary**
 ```bash
-pip install pybloom-live
+python word_loader.py
+python extended_word_loader.py
+python massive_word_loader.py
 ```
 
-4. **Verify installation**
+5. **Launch the web interface**
 ```bash
-python autocomplete.py
+streamlit run advanced_app.py
+```
+
+The application will open at `http://localhost:8501`
+
+### Alternative: Terminal Version
+```bash
+python Typr.py
 ```
 
 ---
 
 ## 🚀 Usage
 
-### Running the Autocomplete System
+### Web Interface (Recommended)
 
-**Interactive Mode:**
+**Access the Dashboard:**
 ```bash
-python autocomplete.py
+streamlit run advanced_app.py
 ```
 
-Type any prefix and press Enter to see suggestions. Type `exit` to quit.
+**Key Features:**
+- **Real-time Autocomplete** - Type any prefix and get instant suggestions
+- **Algorithm Comparison** - Switch between Trie, TST, BST in real-time
+- **Performance Analytics** - View execution times and efficiency metrics
+- **Search History** - Track all your queries and selections
+- **Word Management** - Add, import, export words easily
+- **Category Filtering** - Words organized by domain (technical, medical, business, etc.)
 
-**Example Session:**
+**Example Workflow:**
+1. Type "prog" in the search box
+2. Watch real-time suggestions appear instantly
+3. Click any suggestion to select it (updates frequency)
+4. Switch algorithms using the sidebar dropdown
+5. View performance comparison charts
+6. Check search history in the sidebar
+
+### Terminal Interface
+
+**Basic Mode:**
+```bash
+python Typr.py
 ```
-Enter prefix (or 'exit' to quit): hel
-Suggestions: ['hello', 'help', 'helmet', 'helvetica']
 
-Enter prefix (or 'exit' to quit): prog
-Suggestions: ['program', 'programming', 'progress', 'programmer']
+**DSA Demonstrations (with encryption):**
+```bash
+python archive/TRIE.py      # Trie with RSA encryption
+python archive/TST.py       # Ternary Search Tree
+python archive/BST.py       # Binary Search Tree
+python archive/triewithskiplist.py  # SkipList integration
+```
+
+**Simple Demo (no encryption):**
+```bash
+python archive/samp.py
 ```
 
 ### Using Project Scripts
@@ -156,43 +193,102 @@ python FINAL/scripts/generate_plots.py
 ```
 FORETYPE/
 │
-├── autocomplete.py          # Main autocomplete engine
-├── word_freq.pkl            # Persistent frequency data (auto-generated)
-├── requirements.txt         # Python dependencies
-├── README.md               # This file
-├── LICENSE                 # MIT License
+├── 🚀 Core Applications
+│   ├── advanced_app.py          # Main Streamlit web interface
+│   ├── app.py                   # Basic Streamlit interface
+│   ├── Typr.py                  # Terminal-based autocomplete
+│   └── autocomplete.db          # SQLite database (auto-generated)
 │
-├── FINAL/                  # Production-ready outputs
-│   ├── avi/               # Aviation system modules
-│   │   ├── flight_data.csv
-│   │   ├── analysis_report.pdf
-│   │   └── route_optimizer.py
-│   │
-│   ├── mydb/              # Database resources
-│   │   ├── schema.sql
-│   │   ├── seed_data.sql
-│   │   └── backups/
-│   │
-│   ├── plots/             # Generated visualizations
-│   │   ├── frequency_chart.png
-│   │   ├── usage_trends.pdf
-│   │   └── performance_metrics.svg
-│   │
-│   ├── scripts/           # Automation utilities
-│   │   ├── data_processor.py
-│   │   ├── batch_convert.py
-│   │   └── report_generator.py
-│   │
-│   └── others/            # Documentation & logs
-│       ├── docs/
-│       ├── logs/
-│       └── archive/
+├── 📚 Word Loading System
+│   ├── word_loader.py           # Base dictionary loader (939 words)
+│   ├── extended_word_loader.py  # Extended vocabulary (766 words)
+│   ├── massive_word_loader.py   # Massive dictionary (5,250+ words)
+│   └── check_db.py              # Database statistics utility
 │
-└── Typr/                  # Typing automation module
-    ├── typr_main.py
-    ├── config.json
-    └── README.md
+├── 🗄️ DSA Archive (Educational)
+│   ├── TRIE.py                  # Trie with RSA encryption
+│   ├── TST.py                   # Ternary Search Tree
+│   ├── BST.py                   # Binary Search Tree
+│   ├── triewithskiplist.py      # SkipList integration
+│   └── samp.py                  # Simple demo (no encryption)
+│
+├── 📂 Project Modules
+│   ├── FINAL/                   # Production-ready outputs
+│   │   ├── avi/                 # Aviation system modules
+│   │   ├── mydb/                # Database resources
+│   │   ├── plots/               # Generated visualizations
+│   │   └── scripts/             # Automation utilities
+│   │
+│   ├── Typr/                    # Typing automation module
+│   │   ├── Typr.py              # Enhanced typing system
+│   │   ├── Typr.docx            # Documentation
+│   │   └── .gitkeep
+│   │
+│   └── archive/                 # Historical implementations
+│       ├── triebloomfilterpds.py
+│       ├── triewithbloomfilter.py
+│       └── triewithskiplist2.py
+│
+├── 📄 Documentation
+│   ├── README.md                # This file
+│   └── LICENSE                  # MIT License
+│
+└── 🗃️ Data Files (auto-generated)
+    ├── word_freq.pkl            # Legacy frequency storage
+    └── __pycache__/             # Python cache files
 ```
+
+---
+
+## 📊 Dictionary Statistics
+
+### Massive Word Collection
+- **Total Words:** 7,306+ entries
+- **Categories:** 15+ specialized domains
+- **Languages:** English (with multi-language support structure)
+- **Storage:** SQLite database with full-text search capability
+
+### Word Categories Breakdown
+| Category | Word Count | Examples |
+|----------|------------|----------|
+| Generated | 5,240+ | Prefix/suffix combinations |
+| Technical | 153 | algorithm, database, encryption |
+| Business | 152 | revenue, investment, marketing |
+| Medical | 142 | diagnosis, treatment, therapy |
+| Technology | 138 | software, hardware, network |
+| Common English | 112 | the, be, to, of, and |
+| Programming | 97 | function, variable, array |
+| Food | 103 | restaurant, recipe, ingredient |
+| Nature | 94 | environment, wildlife, climate |
+| Entertainment | 89 | movie, music, gaming |
+| Academic | 87 | research, university, study |
+| Science | 79 | physics, chemistry, biology |
+| Legal | 89 | court, law, legal |
+| Actions | 97 | run, jump, create |
+| Adjectives | 93 | big, small, beautiful |
+| Colors | 50+ | red, blue, green, yellow |
+| Emotions | 50+ | happy, sad, angry |
+| Places | 70+ | home, office, school |
+
+---
+
+## 🧠 Data Structure Performance
+
+### Algorithm Comparison
+| Algorithm | Search Time | Insert Time | Space Usage | Best For |
+|-----------|-------------|-------------|-------------|----------|
+| **Trie** | O(m) | O(m) | O(n×m) | Fast prefix search |
+| **TST** | O(m) | O(m) | O(n) | Space efficiency |
+| **BST** | O(log n) | O(log n) | O(n) | Ordered data |
+| **SkipList** | O(log n) | O(log n) | O(n) | Frequency ranking |
+
+*where m = word length, n = number of words*
+
+### Real-world Performance (7,300+ words)
+- **Average Search Time:** < 1ms
+- **Memory Usage:** ~50MB (including all algorithms)
+- **Database Queries:** < 10ms
+- **Web Response:** < 100ms (including UI rendering)
 
 ---
 
