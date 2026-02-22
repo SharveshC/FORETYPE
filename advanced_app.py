@@ -307,7 +307,7 @@ class EnhancedAutoCompleteSystem:
             'TST': TernarySearchTree(),
             'BST': BinarySearchTree()
         }
-        self.bloom_filter = BloomFilter(capacity=10000, error_rate=0.01)
+        self.bloom_filter = BloomFilter(capacity=100000, error_rate=0.01)
         self.load_data()
 
     def load_data(self):
