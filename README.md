@@ -48,18 +48,18 @@ FORETYPE is a **production-ready intelligent autocomplete system** featuring mul
                ▼
 ┌─────────────────────────────────────────┐
 │      Enhanced Autocomplete Engine       │
-│  ┌─────────┐  ┌──────────┐  ┌────────┐ │
-│  │  Trie   │  │    TST   │  │  BST   │ │
-│  │ Storage │  │  Storage │  │ Storage│ │
-│  └─────────┘  └──────────┘  └────────┘ │
-│  ┌─────────┐  ┌──────────┐  ┌────────┐ │
-│  │ SkipList│  │  Bloom   │  │   RSA  │ │
-│  │ Ranking │  │  Filter  │  │  Encrypt│ │
-│  └─────────┘  └──────────┘  └────────┘ │
+│  ┌─────────┐  ┌──────────┐  ┌────────┐  │
+│  │  Trie   │  │    TST   │  │  BST   │  │
+│  │ Storage │  │  Storage │  │ Storage│  │
+│  └─────────┘  └──────────┘  └────────┘  │
+│  ┌─────────┐  ┌──────────┐  ┌────────┐  │
+│  │ SkipList│  │  Bloom   │  │   RSA  │  │
+│  │ Ranking │  │  Filter  │  │ Encrypt│  │
+│  └─────────┘  └──────────┘  └────────┘  │
 └──────────────┬──────────────────────────┘
                │
                ▼
-┌─────────────────────────────────────────┐
+┌───────────────────────────────────────── ┐
 │        SQLite Database (autocomplete.db) │
 │  ┌─────────────┐  ┌─────────────────┐    │
 │  │    Words    │  │ Search History  │    │
@@ -69,7 +69,7 @@ FORETYPE is a **production-ready intelligent autocomplete system** featuring mul
 │  │ Performance │  │   Categories    │    │
 │  │  Metrics    │  │   (15+ types)   │    │
 │  └─────────────┘  └─────────────────┘    │
-└─────────────────────────────────────────┘
+└───────────────────────────────────────── ┘
 ```
 
 ---
