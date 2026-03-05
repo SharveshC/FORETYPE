@@ -37,12 +37,12 @@ FORETYPE is a **production-ready intelligent autocomplete system** featuring mul
 ```
 ┌─────────────────────────────────────────┐
 │         Streamlit Web Interface         │
-│  ┌─────────────┐  ┌─────────────────┐  │
-│  │   Search UI  │  │  Analytics Dash │  │
-│  │             │  │                 │  │
-│  │ Real-time   │  │ Performance     │  │
-│  │ Suggestions │  │ Monitoring      │  │
-│  └─────────────┘  └─────────────────┘  │
+│  ┌─────────────┐  ┌─────────────────┐   │
+│  │   Search UI │  │  Analytics Dash │   │
+│  │             │  │                 │   │
+│  │ Real-time   │  │ Performance     │   │
+│  │ Suggestions │  │ Monitoring      │   │
+│  └─────────────┘  └─────────────────┘   │
 └──────────────┬──────────────────────────┘
                │
                ▼
